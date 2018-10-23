@@ -27,14 +27,7 @@ function allTypes() {
 function getDBFilePath(modelType) {
   // NOTE: Do not EVER change this. EVER!
   const { app } = electron.remote || electron;
-  var basePath;
-  console.log(process.env.INSOMNIA_DATA_PATH);
-  if (process.env.INSOMNIA_DATA_PATH) {
-    basePath = process.env.INSOMNIA_DATA_PATH;
-  } else {
-    basePath = app.getPath('userData');
-  }
-  console.log(basePath);
+  const basePath = process.env.INSOMNIA_DATA_PATH || app.getPath('userData');
   return fsPath.join(basePath, `insomnia.${modelType}.db`);
 }
 
